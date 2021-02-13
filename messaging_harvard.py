@@ -1,7 +1,12 @@
 from twilio.rest import Client
 
+f = open("keys.env", "r")
+auth = f.read()
+
 account_sid = 'ACbabcb857fb024ba4dd1b56b6c1d2be83'
-auth_token = 'c7c0c352cb8d21ff4ed6c94cdcb082f0'
+auth_token = auth
+
+
 client = Client(account_sid, auth_token)
 
 def send_message(text, num):
@@ -12,4 +17,3 @@ def send_message(text, num):
                               )
     print(message.sid)
 
-send_message("suck my fat cock","+18472743667")

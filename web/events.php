@@ -1,5 +1,10 @@
 <?php
 require_once 'session.php';
+
+if (!isUserLoggedIn()) {
+    header("Location: http://192.168.100.111/signin.php");
+}
+
 ?>
 
 <!doctype html>

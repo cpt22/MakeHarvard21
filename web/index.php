@@ -1,5 +1,19 @@
 <?php
 require_once 'session.php';
+
+if (!isUserLoggedIn()) {
+    header("Location: http://192.168.100.111/signin.php");
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['adddevice'])) {
+    $devid = $_POST['devid'];
+
+    $stmt = $conn->prepare("INSERT INTO device_associations (device_id, username) VALUES (?, ?)");
+    $stmt->bind_param("ss", $devid, $user->getUsername());
+    $stmt->execute();
+    $stmt->close();
+}
+
 ?>
 
 <!doctype html>
@@ -20,34 +34,34 @@ require_once 'session.php';
 </nav>
 <div class="container">
     <table class="table table-striped">
-    <thead>
-    <tr>
-      <th scope="col">Your Devices</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Chinese Ring</td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Chinese Ring</td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Chinese Ring</td>
-    </tr>
-    </tbody>
+        <thead>
+        <tr>
+            <th scope="col">Your Devices</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Chinese Ring</td>
+        </tr>
+        <tr>
+            <th scope="row">1</th>
+            <td>Chinese Ring</td>
+        </tr>
+        <tr>
+            <th scope="row">1</th>
+            <td>Chinese Ring</td>
+        </tr>
+        </tbody>
     </table>
-    Register New Device 
-    <form class="row g-3">
-    <div class="col-auto">
-    <input type="text" class="form-control" id="inputPassword2" placeholder="Device_ID">
-    </div>
-    <div class="col-auto">
-    <button type="submit" class="btn btn-primary mb-3">Register</button>
-    </div>
+    <p>Register New Device</p>
+    <form action="" method="post" class="row g-3">
+        <div class="col-auto">
+            <input type="text" class="form-control" id="devid" placeholder="Device_ID">
+        </div>
+        <div class="col-auto">
+            <button type="submit" name="adddevice" class="btn btn-primary mb-3">Register</button>
+        </div>
     </form>
 </div>
 

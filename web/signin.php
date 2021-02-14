@@ -1,3 +1,7 @@
+<?php
+require_once 'dologin.php';
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,7 +30,7 @@
   
         <h3>Login</h3>
         <hr />
-        <form action="landing.html" method="get">
+        <form action="" method="post">
           <div class="form-group" >
             <label for="exampleInputEmail1">Phone Number</label>
             <input type="email" class="form-control" id="exampleInputEmail1" placeholder="phone #">
@@ -39,7 +43,6 @@
           <hr />
           <button type="button" class="btn btn-link" >Signup</button>
           <button type="button" class="btn btn-link">Reset Password</button>
-  
         </form>
   
       </div>

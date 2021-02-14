@@ -7,8 +7,10 @@ if (!isUserLoggedIn()) {
 
 if (isset($_GET['device'])) {
     $device_id = $_GET['device'];
+    $username = $user->getUsername();
+
     $stmt = $conn->prepare("SELECT * FROM device_associations WHERE username=? AND device_id=?");
-    $stmt->bind_param("ss", $user->getUsername(), $device_id);
+    $stmt->bind_param("ss", $username, $device_id);
     $stmt->execute();
     $result = $stmt->get_result();
     $stmt->close();

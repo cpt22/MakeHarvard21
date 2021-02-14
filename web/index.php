@@ -5,17 +5,19 @@ if (!isUserLoggedIn()) {
     header("Location: http://192.168.100.111/signin.php");
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_device'])) {
-    $device_id = $_POST['device_id'];
+$username = $user->getUsername();
 
-    $stmt = $conn->prepare("INSERT INTO device_associations (device_id, username) VALUES (?, ?)");
-    $stmt->bind_param("ss", $device_id, $user->getUsername());
-    $stmt->execute();
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add-device'])) {
+    $device_id = $_POST['device-id'];
+    var_dump("TEST");
+
+    $stmt = $conn->prepare("INSERT INTO device_associations (device_id, username, descriptor) VALUES (?,?,?)");
+    $stmt->bind_param("sss", $device_id, $username, "Default Descriptor");
+    $stmt->execute() or die(mysqli_error($conn));
     $stmt->close();
 }
 
 $devices = array();
-$username = $user->getUsername();
 
 $stmt = $conn->prepare("SELECT * FROM device_associations WHERE username=?");
 $stmt->bind_param("s", $username);
@@ -67,10 +69,10 @@ while ($row = $result->fetch_assoc()) {
     <p>Register New Device</p>
     <form action="" method="post" class="row g-3">
         <div class="col-auto">
-            <input type="text" class="form-control" name="device_id" placeholder="Device_ID">
+            <input type="text" class="form-control" name="device-id" placeholder="Device_ID">
         </div>
         <div class="col-auto">
-            <button type="submit" name="add_device" class="btn btn-primary mb-3">Register</button>
+            <button type="submit" name="add-device" class="btn btn-primary mb-3">Register</button>
         </div>
     </form>
 </div>

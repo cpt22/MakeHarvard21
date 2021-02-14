@@ -5,6 +5,8 @@ if (!isUserLoggedIn()) {
     header("Location: http://192.168.100.111/signin.php");
 }
 
+$events = array();
+
 if (isset($_GET['device'])) {
     $device_id = $_GET['device'];
     $username = $user->getUsername();
@@ -22,7 +24,6 @@ if (isset($_GET['device'])) {
     }
 }
 
-$events = array();
 
 function loadEvents($device_id) {
     global $events;
@@ -32,11 +33,11 @@ function loadEvents($device_id) {
     $stmt->bind_param("s", $device_id);
     $stmt->execute();
     $result = $stmt->get_result();
-    $stmt->close();
 
     while ($row = $result->fetch_assoc()) {
         array_push($events, array("time"=>$row['time'], "text"=>$row['text'], "filename"=>$row['filename']));
     }
+    $stmt->close();
 }
 
 ?>

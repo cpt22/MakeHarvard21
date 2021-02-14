@@ -60,6 +60,9 @@ function loadEvents($device_id) {
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- ignore next two lines, thats fro the flexbox-->
         <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+                <a class="nav-link" href="#">My Devices</a>
+              </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <button class="btn btn-outline-success my-2 my-sm-0" type="button">My Devices</button>

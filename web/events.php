@@ -73,7 +73,7 @@ function loadEvents($device_id) {
         <tr>
             <th scope="col">Time</th>
             <th scope="col">Message</th>
-            <th scope="col">File</th>
+            <th scope="col">Audio</th>
         </tr>
         </thead>
         <tbody>
@@ -82,7 +82,7 @@ function loadEvents($device_id) {
             echo '<tr>
                     <td scope="row">' . $event['time'] . '</td>
                     <td>'. $event['text'] . '</td>
-                    <td>'. $event['filename'] . '</td>
+                    <td><a href="http://192.168.100.111/upload/' . $event['filename'] . '">'. $event['filename'] . '</a></td>
                  </tr>';
         }
         ?>

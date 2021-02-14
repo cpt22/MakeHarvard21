@@ -5,11 +5,11 @@ if (!isUserLoggedIn()) {
     header("Location: http://192.168.100.111/signin.php");
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['adddevice'])) {
-    $devid = $_POST['devid'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_device'])) {
+    $device_id = $_POST['device_id'];
 
     $stmt = $conn->prepare("INSERT INTO device_associations (device_id, username) VALUES (?, ?)");
-    $stmt->bind_param("ss", $devid, $user->getUsername());
+    $stmt->bind_param("ss", $device_id, $user->getUsername());
     $stmt->execute();
     $stmt->close();
 }
@@ -66,10 +66,10 @@ while ($row = $result->fetch_assoc()) {
     <p>Register New Device</p>
     <form action="" method="post" class="row g-3">
         <div class="col-auto">
-            <input type="text" class="form-control" name="devid" placeholder="Device_ID">
+            <input type="text" class="form-control" name="device_id" placeholder="Device_ID">
         </div>
         <div class="col-auto">
-            <button type="submit" name="adddevice" class="btn btn-primary mb-3">Register</button>
+            <button type="submit" name="add_device" class="btn btn-primary mb-3">Register</button>
         </div>
     </form>
 </div>

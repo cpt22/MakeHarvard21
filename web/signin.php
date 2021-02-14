@@ -20,20 +20,14 @@ require_once 'dologin.php';
 </nav>
 
 <div class="back">
-
-
     <div class="div-center">
-  
-  
       <div class="content">
-  
-  
         <h3>Login</h3>
         <hr />
         <form action="" method="post">
           <div class="form-group" >
             <label for="exampleInputEmail1">Phone Number</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="phone #">
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="phone #">
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>

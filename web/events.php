@@ -61,7 +61,7 @@ function loadEvents($device_id) {
         <!-- ignore next two lines, thats fro the flexbox-->
         <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-                <a class="nav-link" href="#">My Devices</a>
+                <a class="nav-link" href="index.php">My Devices</a>
               </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

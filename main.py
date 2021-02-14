@@ -10,7 +10,7 @@ import requests
 
 ENVIRONMENT_FILE = "keys.env"
 
-DEVICE_ID = "1ZKJESFHM52KJJR88F78F"
+DEVICE_ID = "ZKJESFHM52KJJR88F78FW3GH6"
 OUTPUT_PATH = "/home/pi/MakeHarvard21/out/"
 OUTPUT_FILETYPE = "wav"
 
@@ -19,7 +19,7 @@ LED_PIN = 11
 
 RECORDING_TIME = 3
 
-MESSAGING_ENABLED = False
+MESSAGING_ENABLED = True
 
 def main():
     # Setup GPIO

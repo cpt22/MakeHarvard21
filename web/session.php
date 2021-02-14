@@ -5,8 +5,6 @@ require_once 'User.php';
 
 $user = null;
 
-var_dump($_SESSION);
-
 if (isset($_SESSION['username'])) {
     initializeUser();
 } else {

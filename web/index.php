@@ -28,7 +28,7 @@ $result = $stmt->get_result();
 $stmt->close();
 
 while ($row = $result->fetch_assoc()) {
-    array_push($devices, array("id"=>$row['device_id'], "descriptor"=>$row['descriptor']));
+    array_push($devices, array("device_id"=>$row['device_id'], "descriptor"=>$row['descriptor']));
 }
 
 ?>
@@ -60,10 +60,10 @@ while ($row = $result->fetch_assoc()) {
         <tbody>
         <?php
         foreach ($devices as $device) {
-            echo '<tr>
+            echo '<a href="events.php?device="' . $device['device_id'] . '"><tr>
                     <td>' . $device['descriptor'] . '</td>
                     <td>'. $device['device_id'] . '</td>
-                 </tr>';
+                 </tr></a>';
         }
         ?>
         </tbody>

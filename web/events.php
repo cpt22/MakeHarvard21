@@ -28,7 +28,7 @@ function loadEvents($device_id) {
     global $events;
     global $conn;
 
-    $stmt = $conn->prepare("SELECT * FROM events WHERE device_id=? ORDER BY date DESC");
+    $stmt = $conn->prepare("SELECT * FROM events WHERE device_id=? ORDER BY time DESC");
     $stmt->bind_param("s", $device_id);
     $stmt->execute();
     $result = $stmt->get_result();

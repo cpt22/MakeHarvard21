@@ -48,6 +48,14 @@ while ($row = $result->fetch_assoc()) {
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">DormRoom Doorbell</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- ignore next two lines, thats fro the flexbox-->
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button">Log Out</button>
+        </form>
+    </div>
 </nav>
 <div class="container">
     <table class="table table-striped">

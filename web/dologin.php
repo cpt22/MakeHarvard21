@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
 function doLogin($username, $password)
 {
-    global $conn, $errors, $redirectURL;
+    global $conn, $errors;
     $sql = "SELECT username,password FROM users WHERE username=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
@@ -48,8 +48,6 @@ function doLogin($username, $password)
             initializeSession($username);
             header("Location: http://192.168.100.111/index.php");
             return;
-        } else {
-            echo "error";
         }
     }
     $errors['loginAttempt'] = false;

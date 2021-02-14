@@ -27,11 +27,11 @@ require_once 'dologin.php';
         <form action="" method="post">
           <div class="form-group" >
             <label for="exampleInputEmail1">Phone Number</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="phone #">
+            <input type="text" class="form-control" name="username" id="exampleInputEmail1" placeholder="phone #">
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
           </div>
           <button type="submit" name="submit" value="Submit" class="btn btn-primary">Login</button>
 

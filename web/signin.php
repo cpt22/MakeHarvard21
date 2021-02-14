@@ -1,5 +1,9 @@
 <?php
 require_once 'dologin.php';
+
+if (isUserLoggedIn()) {
+    header("Location: http://192.168.100.111/index.php");
+}
 ?>
 
 <!doctype html>

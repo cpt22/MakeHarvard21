@@ -66,7 +66,7 @@ while ($row = $result->fetch_assoc()) {
     <p>Register New Device</p>
     <form action="" method="post" class="row g-3">
         <div class="col-auto">
-            <input type="text" class="form-control" id="devid" placeholder="Device_ID">
+            <input type="text" class="form-control" name="devid" placeholder="Device_ID">
         </div>
         <div class="col-auto">
             <button type="submit" name="adddevice" class="btn btn-primary mb-3">Register</button>

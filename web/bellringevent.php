@@ -1,4 +1,6 @@
 <?php
+require_once 'connect.php';
+
 $filename = $_POST['filename'];
 $device_id = $_POST['device_id'];
 $transcribed_text = $_POST['transcribed_text'];
@@ -25,12 +27,11 @@ if(isset($_FILES['recording']) && strlen($_FILES['recording']['name']) > 1) {
     // If no errors, upload the image, else, output the errors
     if($err == '') {
 
-        if(move_uploaded_file($_FILES['recording']['tmp_name'], __DIR__ . '/../' . $uploadpath)) {
-            echo 'File: <b>'. basename( $_FILES['recording']['name']). '</b> successfully uploaded:';
-            echo '<br/>File type: <b>'. $_FILES['recording']['type'] .'</b>';
-            echo '<br />Size: <b>'. number_format($_FILES['recording']['size']/1024, 3, '.', '') .'</b> KB';
-            if(isset($width) && isset($height)) echo '<br/>Image Width x Height: '. $width. ' x '. $height;
-            echo '<br/><br/>Image address: <b>http://'.$_SERVER['HTTP_HOST'].rtrim(dirname($_SERVER['REQUEST_URI']), '\\\\/').'/'.$uploadpath.'</b>';
+        if(move_uploaded_file($_FILES['recording']['tmp_name'], __DIR__ . '/' . $uploadpath)) {
+            $stmt = $conn->prepare("INSERT INTO events (device_id, text, filename) VALUES (?,?,?)");
+            $stmt->bind_param("sss", $device_id, $transcribed_text, $filename);
+            $stmt->execute();
+            $stmt->close();
         }
         else echo '<b>Unable to upload the file.</b>';
     }

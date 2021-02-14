@@ -65,7 +65,7 @@ function loadEvents($device_id) {
               </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" action="logout.php">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">My Devices</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
         </form>
     </div>
 </nav>

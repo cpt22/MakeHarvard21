@@ -1,10 +1,9 @@
 <?php
+session_start();
 require_once 'connect.php';
 require_once 'User.php';
 
 $user = null;
-
-session_start();
 
 var_dump($_SESSION);
 
@@ -16,6 +15,7 @@ if (isset($_SESSION['username'])) {
 
 function initializeSession($username)
 {
+    global $_SESSION;
     $_SESSION['username'] = $username;
     initializeUser();
 }

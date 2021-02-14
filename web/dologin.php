@@ -48,6 +48,8 @@ function doLogin($username, $password)
             initializeSession($username);
             header("Location: http://192.168.100.111/index.php");
             return;
+        } else {
+            echo "error";
         }
     }
     $errors['loginAttempt'] = false;

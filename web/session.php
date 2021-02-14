@@ -4,6 +4,8 @@ require_once 'User.php';
 
 $user = null;
 
+session_start();
+
 if (isset($_SESSION['username'])) {
     initializeUser();
 } else {

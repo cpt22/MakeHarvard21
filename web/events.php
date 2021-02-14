@@ -34,11 +34,12 @@ function loadEvents($device_id) {
     $stmt->bind_param("s", $device_id);
     $stmt->execute();
     $result = $stmt->get_result();
-    $stmt->close();
-    var_dump($result);
+
     while ($row = $result->fetch_assoc()) {
+        var_dump($row);
         array_push($events, array("time"=>$row['time'], "text"=>$row['text'], "filename"=>$row['filename']));
     }
+    $stmt->close();
 }
 
 ?>

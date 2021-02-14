@@ -33,8 +33,8 @@ require_once 'dologin.php';
             <label for="exampleInputPassword1">Password</label>
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
           </div>
-          <button type="submit"  value="Submit" class="btn btn-primary">Login</button>
-          <hr />
+          <button type="submit" name="submit" value="Submit" class="btn btn-primary">Login</button>
+
           <button type="button" class="btn btn-link" >Signup</button>
           <button type="button" class="btn btn-link">Reset Password</button>
         </form>

@@ -60,10 +60,10 @@ while ($row = $result->fetch_assoc()) {
         <tbody>
         <?php
         foreach ($devices as $device) {
-            echo '<a href="events.php?device="' . $device['device_id'] . '"><tr>
-                    <td>' . $device['descriptor'] . '</td>
-                    <td>'. $device['device_id'] . '</td>
-                 </tr></a>';
+            echo '<tr>
+                    <td><a href="events.php?device=' . $device['device_id'] . '">' . $device['descriptor'] . '</a></td>
+                    <td><a href="events.php?device=' . $device['device_id'] . '">'. $device['device_id'] . '</a></td>
+                 </tr>';
         }
         ?>
         </tbody>

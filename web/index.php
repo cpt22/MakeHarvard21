@@ -14,6 +14,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['adddevice'])) {
     $stmt->close();
 }
 
+$devices = array();
+
+$stmt = $conn->prepare("SELECT * FROM device_associations WHERE username=?");
+$stmt->bind_param("s", $user->getUsername());
+$stmt->execute();
+$result = $stmt->get_result();
+$stmt->close();
+
+while ($row = $result->fetch_assoc()) {
+    array_push($events, array("id"=>$row['device_id'], "descriptor"=>$row['descriptor']));
+}
+
 ?>
 
 <!doctype html>
@@ -37,21 +49,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['adddevice'])) {
         <thead>
         <tr>
             <th scope="col">Your Devices</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Chinese Ring</td>
-        </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>Chinese Ring</td>
-        </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>Chinese Ring</td>
-        </tr>
+        <?php
+        foreach ($devices as $device) {
+            echo '<tr>
+                    <td>' . $device['descriptor'] . '</td>
+                    <td>'. $device['device_id'] . '</td>
+                 </tr>';
+        }
+        ?>
         </tbody>
     </table>
     <p>Register New Device</p>

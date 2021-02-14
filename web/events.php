@@ -5,6 +5,37 @@ if (!isUserLoggedIn()) {
     header("Location: http://192.168.100.111/signin.php");
 }
 
+if (isset($_GET['device'])) {
+    $device_id = $_GET['device'];
+    $stmt = $conn->prepare("SELECT * FROM device_associations WHERE username=? AND device_id=?");
+    $stmt->bind_param("ss", $user->getUsername(), $device_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+
+    if ($result->num_rows == 1) {
+        loadEvents($device_id);
+    } else {
+        header("Location: http://192.168.100.111/index.php");
+    }
+}
+
+$events = array();
+
+function loadEvents($device_id) {
+    global $events;
+
+    $stmt = $conn->prepare("SELECT * FROM events WHERE device_id=? ORDER BY date DESC");
+    $stmt->bind_param("s", $device_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+
+    while ($row = $result->fetch_assoc()) {
+        array_push($events, array("time"=>$row['time'], "text"=>$row['text'], "filename"=>$row['filename']));
+    }
+}
+
 ?>
 
 <!doctype html>
@@ -23,39 +54,35 @@ if (!isUserLoggedIn()) {
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">DormRoom Doorbell</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-     <!-- ignore next two lines, thats fro the flexbox-->
-    <ul class="navbar-nav mr-auto">
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="button">My Devices</button>
-    </form>
-  </div>
+        <!-- ignore next two lines, thats fro the flexbox-->
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button">My Devices</button>
+        </form>
+    </div>
 </nav>
 
 <div class="container">
     <table class="table table-striped">
-    <thead>
-    <tr>
-      <th scope="col">Device Event</th>
-      <th scope="col">Message</th>
-      <th scope="col">Time</th>
-      <th scope="col">File</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Fuck you</td>
-      <td>10:00 Am</td>
-      <td>cdcd.wav</td>
-    </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Fuck you</td>
-        <td>10:00 Am</td>
-        <td>cdcd.wav</td>
-      </tr>
-    </tbody>
+        <thead>
+        <tr>
+            <th scope="col">Time</th>
+            <th scope="col">Message</th>
+            <th scope="col">File</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        foreach ($events as $event) {
+            echo '<tr>
+                    <td scope="row">' . $event['time'] . '</td>
+                    <td>'. $event['text'] . '</td>
+                    <td>'. $event['filename'] . '</td>
+                 </tr>';
+        }
+        ?>
+        </tbody>
     </table>
 </div>
 

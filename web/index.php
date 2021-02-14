@@ -28,7 +28,7 @@ $result = $stmt->get_result();
 $stmt->close();
 
 while ($row = $result->fetch_assoc()) {
-    array_push($events, array("id"=>$row['device_id'], "descriptor"=>$row['descriptor']));
+    array_push($devices, array("id"=>$row['device_id'], "descriptor"=>$row['descriptor']));
 }
 
 ?>

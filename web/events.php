@@ -35,7 +35,6 @@ function loadEvents($device_id) {
     $result = $stmt->get_result();
 
     while ($row = $result->fetch_assoc()) {
-        var_dump($row);
         array_push($events, array("time"=>$row['time'], "text"=>$row['text'], "filename"=>$row['filename']));
     }
     $stmt->close();
@@ -79,9 +78,7 @@ function loadEvents($device_id) {
         </thead>
         <tbody>
         <?php
-        var_dump($events);
         foreach ($events as $event) {
-
             echo '<tr>
                     <td scope="row">' . $event['time'] . '</td>
                     <td>'. $event['text'] . '</td>

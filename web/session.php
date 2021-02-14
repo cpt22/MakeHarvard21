@@ -28,5 +28,5 @@ function initializeUser()
 
 function isUserLoggedIn()
 {
-    return isset($_SESSION['username']) && isset($_SESSION['userID']);
+    return isset($_SESSION['username']);
 }

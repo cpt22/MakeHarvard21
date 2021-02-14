@@ -45,7 +45,7 @@ function doLogin($username, $password)
         $passwordHash = $result['password'];
 
         if (password_verify($password, $passwordHash)) {
-            initializeSession($username, $redirectURL);
+            initializeSession($username);
             header("Location: http://192.168.100.111/index.php");
             return;
         }

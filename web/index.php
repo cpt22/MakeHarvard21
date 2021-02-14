@@ -9,11 +9,12 @@ $username = $user->getUsername();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add-device'])) {
     $device_id = $_POST['device-id'];
+    $descriptor = "Default Descriptor";
 
     var_dump($user->getUsername());
 
     $stmt = $conn->prepare("INSERT INTO device_associations (device_id, username, descriptor) VALUES (?,?,?)");
-    $stmt->bind_param("sss", $device_id,$username, "Default Descriptor") or die(mysqli_error($conn));
+    $stmt->bind_param("sss", $device_id,$username, $descriptor) or die(mysqli_error($conn));
     $stmt->execute();
     $stmt->close();
 }

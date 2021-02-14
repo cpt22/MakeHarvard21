@@ -15,9 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_device'])) {
 }
 
 $devices = array();
+$username = $user->getUsername();
 
 $stmt = $conn->prepare("SELECT * FROM device_associations WHERE username=?");
-$stmt->bind_param("s", $user->getUsername());
+$stmt->bind_param("s", $username);
 $stmt->execute();
 $result = $stmt->get_result();
 $stmt->close();
